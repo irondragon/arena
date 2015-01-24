@@ -1,5 +1,9 @@
 package main.java.com.moscow.java;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  * Created by messi on 23.01.2015.
  */
@@ -7,6 +11,8 @@ package main.java.com.moscow.java;
 public class Core {
 
     private String name;
+
+    public static String properties="app.properties";
 
     public Core() {
     }
@@ -25,7 +31,17 @@ public class Core {
 
     public static void main(String[] args) {
         Core core = new Core();
-        core.setName("Moscow");
+        Properties props = new Properties();
+        InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(properties);
+        try {
+            props.load(resourceStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+        }
+
+        core.setName(props.getProperty("value"));
         System.out.print(core.getName());
     }
 
