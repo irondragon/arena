@@ -7,7 +7,6 @@ import java.util.ArrayList;
  */
 public class QuickSort {
 
-
     public static int partition(int[] a, int p, int r) {
         int x = a[p];
         int i = p - 1;

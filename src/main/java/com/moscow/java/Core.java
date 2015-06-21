@@ -45,6 +45,7 @@ public class Core implements Comparable{
         InputStream resourceStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(properties);
         try {
             props.load(resourceStream);
+            resourceStream.close();
         } catch (IOException e) {
             logger.error(e);
         } finally {

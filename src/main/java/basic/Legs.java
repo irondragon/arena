@@ -5,19 +5,19 @@ public class Legs {
     private static final Object ball = new Object();
     private static final long millis = 1000;
 
-
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args)  {
 
         final boolean[] left = {false};
 
         Runnable leftLeg = new Runnable() {
+
             public void run() {
-                try {
+               try {
                     synchronized (ball) {
 
                         while (!Thread.currentThread().isInterrupted()) {
 
-                            while (!left[0]) {
+                            if (!left[0]) {
                                 ball.wait();
                             }
 
@@ -25,7 +25,6 @@ public class Legs {
 
                             left[0] = false;
                             ball.notifyAll();
-
                             Thread.sleep(millis);
                         }
 
@@ -36,6 +35,8 @@ public class Legs {
             }
         };
 
+
+
         Runnable rightLeg = new Runnable() {
             public void run() {
 
@@ -44,7 +45,7 @@ public class Legs {
 
                         while (!Thread.currentThread().isInterrupted()) {
 
-                            while (left[0]) {
+                            if (left[0]) {
                                 ball.wait();
                             }
 
@@ -55,7 +56,6 @@ public class Legs {
 
 
                             Thread.sleep(millis);
-                            new InterruptedException();
                         }
 
                     }
@@ -65,13 +65,16 @@ public class Legs {
 
             }
         };
-       // for (int i = 0; i < 10; ++i) {
-            Thread leftLegThread = new Thread(leftLeg);
-            Thread rightLegThread = new Thread(rightLeg);
 
-            leftLegThread.start();
-            rightLegThread.start();
-       // }
+
+        // for (int i = 0; i < 10; ++i) {
+        Thread leftLegThread = new Thread(leftLeg);
+        Thread rightLegThread = new Thread(rightLeg);
+
+       leftLegThread.start();
+       rightLegThread.start();
+
+
 
     }
 }

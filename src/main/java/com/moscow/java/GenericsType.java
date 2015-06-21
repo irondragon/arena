@@ -33,7 +33,7 @@ public class GenericsType<T> {
         Core core = new Core();
         GenericsType<Core> coreGenericsType1 = new GenericsType<Core>();
         GenericsType<Core> coreGenericsType2 = new GenericsType<Core>();
-        GenericsType.<Core>compare(new Core(), new Core());
+        GenericsType.<SonCore>compare(new SonCore(), new SonCore());
         List<? extends Integer> intList = new ArrayList<>();
         List<? extends Number> numList = intList;
         int t=0;

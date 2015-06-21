@@ -16,11 +16,14 @@ public class Foo extends Base {
     }
 
     public static void main(String[] args) {
-        Foo foo = new Foo();
-        double f = Math.sqrt(2) ;
-        int i=8;
-        int j=++i;
-        j>>=1;
-        System.out.print(j);
+        Integer i1= 1;
+        Integer i2= 1;
+        System.out.println(i1 == i2);
+        System.out.println(i1.equals(i2));
+        String s1 = "a";
+        String s2 = "a";
+        System.out.println(s1 == s2);
+        System.out.println(s1.equals(s2));
+
     }
 }
